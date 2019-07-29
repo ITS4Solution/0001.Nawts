@@ -1,0 +1,26 @@
+[Stats]
+<<<<<<< .mine
+EditorSecs=39389
+DesignerSecs=18081
+InspectorSecs=6348
+CompileSecs=9726555
+OtherSecs=24696
+StartTime=27/02/2018 12:47:08
+||||||| .r22
+EditorSecs=8900
+DesignerSecs=3166
+InspectorSecs=1321
+CompileSecs=2322635
+OtherSecs=3583
+StartTime=27/02/2018 12:47:08
+=======
+EditorSecs=45367
+DesignerSecs=23623
+InspectorSecs=11265
+CompileSecs=10650783
+OtherSecs=42706
+StartTime=09/08/2017 08:58:54
+>>>>>>> .r40
+RealKeys=0
+EffectiveKeys=0
+DebugSecs=55653

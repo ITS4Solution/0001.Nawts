@@ -1,0 +1,21 @@
+Solução completa para GERAÇÃO, ASSINATURA e TRANSMISSÃO de NOTA FISCAL ELETRÔNICA
+
+TKS Software
+www.igara.com.br
+
+********************
+Geracao_XML
+Demo de geração de todos os arquivos de Nota Fiscal Eletrônica
+Produto vendido somente na modalidade COM código fonte
+
+********************
+Assinatura_XML
+Demo de uso da dll assinaturaNFe32dll.dll que permite assinar documentos de NFe de qualquer UF
+A versão da dll que acompanha o demo está registrada para a TKS Software e permite a assinatura de arquivos .XML somente com CNPJ do Emitente = 34261131000144
+Produto vendido na modalidade COM e SEM código fonte, somente para usuário que já adquiram a Geracao_XML
+
+********************
+Transmissao_XML
+Demo de uso da dll transmissaoNFe32dll.dll que permite transmitir todos os documentos de NFe para qualquer UF
+A versão da dll que acompanha o demo está registrada para a TKS Software e permite o envio de arquivos .XML somente com CNPJ do Emitente = 34261131000144
+Produto vendido na modalidade COM e SEM código fonte, somente para usuário que já adquiram a Geracao_XML

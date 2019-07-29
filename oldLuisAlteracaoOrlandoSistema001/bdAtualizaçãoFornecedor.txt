@@ -1,0 +1,18 @@
+/* Atualização bd tblfornecedor */
+
+ALTER TABLE "tblfornecedor"
+    ADD "codfornecedor" INTEGER,
+    ADD "datacad" DATE,
+    ADD "cargo" VARCHAR(30),
+    ADD "fone1" VARCHAR(15),
+    ADD "fone2" VARCHAR(15),
+    ADD "fone3" VARCHAR(15),
+    ADD "fone4" VARCHAR(15),
+    ADD "uf" VARCHAR(2),
+    ADD "cidade" VARCHAR(30),
+    ADD "ie" VARCHAR(14),
+    ADD "contato" VARCHAR(30),
+    ADD "endereco" VARCHAR(50),
+    ADD "fax" VARCHAR(15),
+    ADD "cep" VARCHAR(10),
+    ADD "email" VARCHAR(30)

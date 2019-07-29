@@ -1,0 +1,4 @@
+ALTER TABLE "tblrefugo"
+    ADD "obser" BLOB SUB_TYPE 1 SEGMENT SIZE 80
+
+ALTER TABLE "tblrefugo" DROP "obs"

@@ -1,0 +1,6 @@
+SELECT [COD_EMPRESA]
+      ,[CODIGO]
+      ,[RECIBO]
+      ,[RETORNO]
+      ,[DIRETORIO_XML_RESPOSTA]
+  FROM [TNFE_LOTE]

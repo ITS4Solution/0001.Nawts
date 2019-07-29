@@ -1,0 +1,279 @@
+unit U_AbstratoButtons;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, U_Abstrato001, ExtCtrls, ActnList, ComCtrls, cxGraphics, cxLookAndFeels, cxLookAndFeelPainters, Menus,
+  dxSkinsCore, dxSkinsDefaultPainters, StdCtrls, cxButtons, AdvGlassButton,
+  System.Actions, Data.DB, Datasnap.DBClient,midaslib, dxBevel, dxGDIPlusClasses;
+
+type
+  TF_AbstratoButtons = class(TF_Abstrato001)
+    ActSalvar: TAction;
+    ActDeletar: TAction;
+    ActNovo: TAction;
+    ActEditar: TAction;
+    btnNovo: TAdvGlassButton;
+    btnEditar: TAdvGlassButton;
+    btnDeletar: TAdvGlassButton;
+    btnSalvar: TAdvGlassButton;
+    oCds: TClientDataSet;
+    oDS: TDataSource;
+    dxBevel1: TdxBevel;
+    Image1: TImage;
+    dxBevel2: TdxBevel;
+    procedure ActSalvarExecute(Sender: TObject);
+    procedure ActDeletarExecute(Sender: TObject);
+    procedure ActNovoExecute(Sender: TObject);
+    procedure ActEditarExecute(Sender: TObject);
+    procedure oDSStateChange(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure objoCdsBeforePost(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  F_AbstratoButtons: TF_AbstratoButtons;
+
+implementation
+
+{$R *.dfm}
+
+uses UDM;
+
+procedure TF_AbstratoButtons.ActDeletarExecute(Sender: TObject);
+begin
+  inherited;
+//   if DM.iNivelUsuario = 1 then
+//   begin
+//      DM.tmsMSG('Informação','Seu usuário não dá permissão de deleção de dados !');
+//      Abort;
+//   end
+//   else
+//   begin
+
+      if DM.tmsMSGQ('Informação','Deseja realmente deletar o registro ?') = mrOk then
+      begin
+         DM.opencnn;
+         dm.SMGen.IDeletaRegistro(dm.sUsuarioLogado,self.Name);
+         dm.closecnn;
+         oCds.Delete;
+         oCds.ApplyUpdates(-1);
+      end;
+
+//   end;
+end;
+
+procedure TF_AbstratoButtons.ActEditarExecute(Sender: TObject);
+begin
+  inherited;
+//   if DM.iNivelUsuario = 1 then
+//   begin
+//      DM.tmsMSG('Informação','Seu usuário não dá permissão de edição de dados !');
+//      Abort;
+//   end
+//   else
+//   begin
+      oCds.Edit;
+//   end;
+
+end;
+
+procedure TF_AbstratoButtons.ActNovoExecute(Sender: TObject);
+begin
+  inherited;
+//   if DM.iNivelUsuario = 1 then
+//   begin
+//      DM.tmsMSG('Informação','Seu usuário não dá permissão de inserção de dados !');
+//      Abort;
+//   end
+//   else
+//   begin
+      oCds.Insert;
+//   end;
+end;
+
+procedure TF_AbstratoButtons.ActSalvarExecute(Sender: TObject);
+begin
+  inherited;
+//   Try
+//      Try
+//         if oCds.State in [dsInsert] then
+//         begin
+//            oCds.FieldByName('DtInc').AsDateTime := now();
+//            oCds.FieldByName('UsuInc').AsString  := dm.sUsuarioLogado;
+//         end
+//         else if oCds.State in [dsEdit] then
+//         begin
+//            oCds.FieldByName('DtAlt').AsDateTime := now();
+//            oCds.FieldByName('UsuAlt').AsString  := dm.sUsuarioLogado;
+//         end;
+//      Except
+//         DM.tmsMSG('Informação','Falta de campos de controle de alteração !')
+//      End;
+//   Finally
+      oCds.Post;
+      oCds.ApplyUpdates(-1);
+//   End;
+
+end;
+
+procedure TF_AbstratoButtons.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  inherited;
+   if ocds.State in [dsEdit,dsInsert] then
+   begin
+      if not(DM.tmsMSGQ('Informação','Os registros não forma salvos. Deseja sair assim mesmo ?') = mrOk) then
+      begin
+         Abort;
+      end
+   end;
+end;
+
+procedure TF_AbstratoButtons.FormCreate(Sender: TObject);
+var
+  I: Integer;
+begin
+  inherited;
+   Screen.Cursor := crSQLWait;
+   oCds.Open;
+   Screen.Cursor := crDefault;
+   for I := 0 to ComponentCount -1  do
+   begin
+      if Components[i] is tClientdataset  then
+      begin
+         TClientDataset(Components[i]).BeforePost := objoCdsBeforePost;
+      end;
+   end;
+end;
+
+procedure TF_AbstratoButtons.objoCdsBeforePost(DataSet: TDataSet);
+Var
+   i: integer;
+   sState : String;
+begin
+//<<<<<<< .mine
+   if dataset.state in [dsInsert] then
+   begin
+      sState := 'Insert';
+         for I := 0 to DataSet.FieldCount - 1 do
+      begin
+         Try
+            if DataSet.Fields.Fields[i].Value <> DataSet.Fields.Fields[i].OldValue  then
+            begin
+               Try
+                  dm.opencnn;
+                  dm.SmGen.InsertAuditoria(DataSet.FieldByName('id').AsString,self.Name,DataSet.Fields.Fields[i].Name,DataSet.Fields.Fields[i].Value,DataSet.Fields.Fields[i].OldValue,sState, dm.sUsuarioLogado,'');
+                  dm.closecnn;
+               Except
+
+               End;
+            end;
+         Except
+
+         end;
+      end;
+   end;
+    if dataset.State in [dsEdit] then
+   begin
+      sState := 'Update';
+   for I := 0 to DataSet.FieldCount - 1 do
+      begin
+         Try
+            if DataSet.Fields.Fields[i].Value <> DataSet.Fields.Fields[i].OldValue  then
+            begin
+               Try
+                  dm.opencnn;
+                  dm.SmGen.InsertAuditoria(DataSet.FieldByName('id').AsString,self.Name,DataSet.Fields.Fields[i].Name,DataSet.Fields.Fields[i].Value,DataSet.Fields.Fields[i].OldValue,sState, dm.sUsuarioLogado,'');
+                  dm.closecnn;
+               Except
+
+               End;
+            end;
+         Except
+
+         end;
+      end;
+//||||||| .r8
+   if dataset.state in [dsInsert] then
+   begin
+      sState := 'Insert';
+   end;
+    if dataset.State in [dsEdit] then
+   begin
+      sState := 'Update';
+   end;
+   for I := 0 to DataSet.FieldCount - 1 do
+      begin
+         Try
+            if DataSet.Fields.Fields[i].Value <> DataSet.Fields.Fields[i].OldValue  then
+            begin
+               Try
+                  dm.opencnn;
+                 // dm.SmGen.InsertAuditoria(DataSet.FieldByName('id').AsString,self.Name,DataSet.Fields.Fields[i].Name,DataSet.Fields.Fields[i].Value,DataSet.Fields.Fields[i].OldValue,sState, dm.sUsuarioLogado,'');
+                  dm.closecnn;
+               Except
+
+               End;
+            end;
+         Except
+
+         end;
+      end;
+//=======
+//   if dataset.state in [dsInsert] then
+//   begin
+//      sState := 'Insert';
+//   end;
+//    if dataset.State in [dsEdit] then
+//   begin
+//      sState := 'Update';
+//   end;
+//   for I := 0 to DataSet.FieldCount - 1 do
+//      begin
+//         Try
+//            if DataSet.Fields.Fields[i].Value <> DataSet.Fields.Fields[i].OldValue  then
+//            begin
+//               Try
+//                  dm.opencnn;
+//                 // dm.SmGen.InsertAuditoria(DataSet.FieldByName('id').AsString,self.Name,DataSet.Fields.Fields[i].Name,DataSet.Fields.Fields[i].Value,DataSet.Fields.Fields[i].OldValue,sState, dm.sUsuarioLogado,'');
+//                  dm.closecnn;
+//               Except
+//
+//               End;
+//            end;
+//         Except
+//
+//         end;
+//      end;
+//>>>>>>> .r11
+   end;
+
+end;
+
+procedure TF_AbstratoButtons.oDSStateChange(Sender: TObject);
+begin
+  inherited;
+   if oDS.State in [dsInsert,dsEdit,dsInsert] then
+   begin
+      btnDeletar.Enabled   := False;
+      btnNovo.Enabled      := False;
+      btnEditar.Enabled    := False;
+      btnSalvar.Enabled    := True;
+   end
+   else
+   begin
+      btnDeletar.Enabled   := True;
+      btnNovo.Enabled      := True;
+      btnEditar.Enabled    := True;
+      btnSalvar.Enabled    := False;
+   end
+end;
+
+end.

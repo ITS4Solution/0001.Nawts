@@ -1,0 +1,11 @@
+CREATE TABLE "tblsaidaembalagem" (
+    "id" INTEGER NOT NULL,
+    "idordemproducao" INTEGER,
+    "data" DATE,
+    "destino" VARCHAR(50),
+    "responsavel" VARCHAR(30),
+    "requisitante" VARCHAR(30),
+    "idproduto" INTEGER,
+    "tipo" VARCHAR(30),
+    "valor" FLOAT,
+    "obs" BLOB SUB_TYPE 1 SEGMENT SIZE 200)

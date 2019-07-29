@@ -1,0 +1,85 @@
+unit U_ConsultaCidades;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_AbstratoConsultaGrid, Data.DB,
+  Datasnap.DBClient, Vcl.ImgList, System.Actions, Vcl.ActnList,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Grids,
+  Vcl.DBGrids, AdvGlassButton, Vcl.ComCtrls, Datasnap.Provider,
+  UKernel_VariaveisPublic, UKernel_Classe_Pesquisa;
+
+type
+  TF_ConsultaCidades = class(TF_AbstratoConsultaGrid)
+    dspCidades: TDataSetProvider;
+    oCdsID: TIntegerField;
+    oCdsCODUF: TIntegerField;
+    oCdsESTADO: TStringField;
+    oCdsSIGLA: TStringField;
+    oCdsCODCIDADE: TIntegerField;
+    oCdsCIDADE: TStringField;
+    procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    IDPesquisa: string;
+    procedure EfetuarPesquisa(strPesquisa: string); override;
+    { Public declarations }
+    // IDPesquisa: string;
+
+  end;
+
+var
+  F_ConsultaCidades: TF_ConsultaCidades;
+
+implementation
+
+{$R *.dfm}
+
+uses UDm;
+
+{ TF_ConsultaCidades }
+
+procedure TF_ConsultaCidades.EfetuarPesquisa(strPesquisa: string);
+var
+  SQL: string;
+begin
+  inherited;
+  SQL := 'Select * from NFE_Cidades';
+  SQL := SQL + ' Where CODCidade like ' + QuotedStr(strPesquisa);
+  SQL := SQL + ' or Cidade like ' + QuotedStr(strPesquisa + '%');
+  SQL := SQL + ' or Sigla like ' + QuotedStr(strPesquisa);
+  SQL := SQL + ' Order by Cidade, Estado';
+
+  DM.QryAux.close;
+  DM.QryAux.SQL.Clear;
+  DM.QryAux.SQL.add(SQL);
+  DM.QryAux.OPen;
+
+//  oCds.Close;
+//  oCds.Open;
+
+end;
+
+procedure TF_ConsultaCidades.FormCreate(Sender: TObject);
+begin
+  lbTitulo.caption := 'Consulta Produtos';
+
+   Screen.Cursor := crSQLWait;
+   oCds.Open;
+   Screen.Cursor := crDefault;
+
+  inherited;
+end;
+
+procedure TF_ConsultaCidades.FormShow(Sender: TObject);
+begin
+//  if (IDPesquisa <> '') then
+//    EditPesquisa.Text:=IDPesquisa;
+
+  inherited;
+end;
+
+end.

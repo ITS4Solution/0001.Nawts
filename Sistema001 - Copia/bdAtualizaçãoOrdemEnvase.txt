@@ -1,0 +1,14 @@
+CREATE TABLE "tblordemenvase" (
+    "id" INTEGER NOT NULL,
+    "codopenvase" INTEGER,
+    "idprodutos" INTEGER,
+    "qtdprevista" FLOAT,
+    "qtdreal" FLOAT,
+    "hora" TIME,
+    "data" DATE,
+    "ue" VARCHAR(5),
+    "lote" VARCHAR(8),
+    "cpa" VARCHAR(5),
+    "operador" VARCHAR(30),
+    "custoenvase" FLOAT,
+    "status" VARCHAR(15))

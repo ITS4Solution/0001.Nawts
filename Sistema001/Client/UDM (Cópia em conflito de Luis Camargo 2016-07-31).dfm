@@ -1,0 +1,133 @@
+object DM: TDM
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  Height = 365
+  Width = 456
+  object sqlCnn: TSQLConnection
+    ConnectionName = 'Server'
+    DriverName = 'DataSnap'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverName=DataSnap'
+      'DriverUnit=Data.DBXDataSnap'
+      'Port=8211'
+      'CommunicationProtocol=tcp/ip'
+      'DatasnapContext=datasnap/'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland' +
+        '.Data.DbxClientDriver,Version=21.0.0.0,Culture=neutral,PublicKey' +
+        'Token=91d62ebb5b0d1b1b'
+      'Filters={}'
+      'HostName=192.168.1.155')
+    Left = 18
+    Top = 18
+    UniqueId = '{4FBE5A63-8B8C-4527-A914-F7E743F8E653}'
+  end
+  object ShCoGen: TDSProviderConnection
+    ServerClassName = 'TServerMethodsGen'
+    SQLConnection = sqlCnn
+    Left = 88
+    Top = 16
+  end
+  object tmsMsgComp: TAdvSmoothMessageDialog
+    MaximumWidth = 0
+    ButtonAreaFill.Color = clWhite
+    ButtonAreaFill.ColorTo = clWhite
+    ButtonAreaFill.ColorMirror = clNone
+    ButtonAreaFill.ColorMirrorTo = clNone
+    ButtonAreaFill.GradientType = gtVertical
+    ButtonAreaFill.GradientMirrorType = gtSolid
+    ButtonAreaFill.Opacity = 0
+    ButtonAreaFill.OpacityTo = 100
+    ButtonAreaFill.BorderColor = clNone
+    ButtonAreaFill.Rounding = 5
+    ButtonAreaFill.RoundingType = rtBottom
+    ButtonAreaFill.ShadowOffset = 0
+    ButtonAreaFill.Glow = gmNone
+    Buttons = <
+      item
+        Spacing = 0
+        Caption = 'Ok'
+        Color = 15984090
+        ColorDown = 15785680
+        ColorFocused = 16050398
+        HoverColor = 16120314
+      end>
+    Caption = 'tmsMsgComp'
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clWindowText
+    CaptionFont.Height = -13
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = []
+    ButtonFont.Charset = DEFAULT_CHARSET
+    ButtonFont.Color = clWindowText
+    ButtonFont.Height = -11
+    ButtonFont.Name = 'Tahoma'
+    ButtonFont.Style = []
+    CaptionFill.Color = clWhite
+    CaptionFill.ColorMirror = clNone
+    CaptionFill.ColorMirrorTo = clNone
+    CaptionFill.GradientType = gtVertical
+    CaptionFill.GradientMirrorType = gtSolid
+    CaptionFill.Opacity = 100
+    CaptionFill.OpacityTo = 0
+    CaptionFill.BorderColor = clNone
+    CaptionFill.Rounding = 5
+    CaptionFill.RoundingType = rtTop
+    CaptionFill.ShadowOffset = 0
+    CaptionFill.Glow = gmNone
+    Fill.Color = 15984090
+    Fill.ColorTo = 15785680
+    Fill.ColorMirror = clNone
+    Fill.ColorMirrorTo = clNone
+    Fill.GradientType = gtVertical
+    Fill.GradientMirrorType = gtSolid
+    Fill.Opacity = 240
+    Fill.OpacityTo = 220
+    Fill.BorderColor = clBlack
+    Fill.Rounding = 5
+    Fill.ShadowOffset = 0
+    Fill.Glow = gmNone
+    HTMLText.Font.Charset = DEFAULT_CHARSET
+    HTMLText.Font.Color = clWindowText
+    HTMLText.Font.Height = -11
+    HTMLText.Font.Name = 'Tahoma'
+    HTMLText.Font.Style = []
+    Position = poDesigned
+    Version = '1.2.2.1'
+    ProgressMaximum = 100.000000000000000000
+    ProgressAppearance.BackGroundFill.Color = 16765615
+    ProgressAppearance.BackGroundFill.ColorTo = 16765615
+    ProgressAppearance.BackGroundFill.ColorMirror = clNone
+    ProgressAppearance.BackGroundFill.ColorMirrorTo = clNone
+    ProgressAppearance.BackGroundFill.GradientType = gtVertical
+    ProgressAppearance.BackGroundFill.GradientMirrorType = gtSolid
+    ProgressAppearance.BackGroundFill.BorderColor = clSilver
+    ProgressAppearance.BackGroundFill.Rounding = 0
+    ProgressAppearance.BackGroundFill.ShadowOffset = 0
+    ProgressAppearance.BackGroundFill.Glow = gmNone
+    ProgressAppearance.ProgressFill.Color = 11196927
+    ProgressAppearance.ProgressFill.ColorTo = 7257087
+    ProgressAppearance.ProgressFill.ColorMirror = 4370174
+    ProgressAppearance.ProgressFill.ColorMirrorTo = 8053246
+    ProgressAppearance.ProgressFill.GradientType = gtVertical
+    ProgressAppearance.ProgressFill.GradientMirrorType = gtVertical
+    ProgressAppearance.ProgressFill.BorderColor = 16765357
+    ProgressAppearance.ProgressFill.Rounding = 0
+    ProgressAppearance.ProgressFill.ShadowOffset = 0
+    ProgressAppearance.ProgressFill.Glow = gmNone
+    ProgressAppearance.Font.Charset = DEFAULT_CHARSET
+    ProgressAppearance.Font.Color = clWindowText
+    ProgressAppearance.Font.Height = -11
+    ProgressAppearance.Font.Name = 'Tahoma'
+    ProgressAppearance.Font.Style = []
+    ProgressAppearance.ProgressFont.Charset = DEFAULT_CHARSET
+    ProgressAppearance.ProgressFont.Color = clWindowText
+    ProgressAppearance.ProgressFont.Height = -11
+    ProgressAppearance.ProgressFont.Name = 'Tahoma'
+    ProgressAppearance.ProgressFont.Style = []
+    ProgressAppearance.ValueFormat = '%.0f%%'
+    Left = 200
+    Top = 120
+  end
+end

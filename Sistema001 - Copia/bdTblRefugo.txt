@@ -1,0 +1,14 @@
+CREATE TABLE "tblrefugo" (
+    "id" INTEGER NOT NULL,
+    "codinsumo" INTEGER,
+    "qtd" FLOAT,
+    "idordemproducao" INTEGER,
+    "obs" BLOB SUB_TYPE 0 SEGMENT SIZE 80)
+
+create trigger "tblrefugo_BI" for "tblrefugo"
+active before insert position 0
+as
+begin
+  if (new."id" is null) then
+    new."id" = gen_id("GEN_tblrefugo_ID",1);
+end

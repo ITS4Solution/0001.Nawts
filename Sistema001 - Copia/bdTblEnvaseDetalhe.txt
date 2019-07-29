@@ -1,0 +1,15 @@
+CREATE TABLE "tblenvasedetalhe" (
+    "id" INTEGER NOT NULL,
+    "codproduto" INTEGER,
+    "qtd" FLOAT,
+    "ue" VARCHAR(5),
+    "preco" FLOAT,
+    "valortotal" FLOAT)
+
+create trigger "tblenvasedetalhe_BI" for "tblenvasedetalhe"
+active before insert position 0
+as
+begin
+  if (new."id" is null) then
+    new."id" = gen_id("GEN_tblenvasedetalhe_ID",1);
+end

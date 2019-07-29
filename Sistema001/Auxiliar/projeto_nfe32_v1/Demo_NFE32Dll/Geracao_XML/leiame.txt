@@ -1,0 +1,4 @@
+Nesta pasta estão disponíveis todos os demos de geração e manipulação de arquivos XML de NFe para o pacote de liberação PL_006n, que utilizam as units respectivas, geradas automaticamente através de processo de XML DataBiding dos Shemas XML (XSD) originais disponibilizados no portal oficial da NFe (http://www.nfe.fazenda.gov.br/portal/schemas.aspx).
+
+Verifique no portal a vigência do pacote de libera
+ção atual.

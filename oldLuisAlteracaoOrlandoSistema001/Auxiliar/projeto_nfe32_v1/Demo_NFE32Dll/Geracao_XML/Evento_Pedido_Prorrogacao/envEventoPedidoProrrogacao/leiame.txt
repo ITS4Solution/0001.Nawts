@@ -1,0 +1,1 @@
+Copie o arquivo assinaturaNFe32dll.dll que se encontra na pasta de demo de assinatura e cole uma cópia aqui nesta pasta

@@ -1,0 +1,14 @@
+CREATE TABLE "tblordemproducaoquimico" (
+    "id" INTEGER NOT NULL,
+    "idproduto" INTEGER,
+    "idtblordemproducao" INTEGER,
+    "percentual" FLOAT,
+    "qtd" FLOAT)
+
+create trigger "tblordemproducaoquimico_BI" for "tblordemproducaoquimico"
+active before insert position 0
+as
+begin
+  if (new."id" is null) then
+    new."id" = gen_id("GEN_tblordemproducaoquimico_ID",1);
+end

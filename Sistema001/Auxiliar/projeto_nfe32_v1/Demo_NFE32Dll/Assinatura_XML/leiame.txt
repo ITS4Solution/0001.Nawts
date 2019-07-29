@@ -1,0 +1,48 @@
+Copie o arquivo assinaturaNFe32dll.dll que se encontra na pasta de demo de assinatura e cole uma cópia aqui nesta pasta
+
+Sobre operações com UTF-8
+
+Todas as operações realizadas com UTF-8 devem ser feitas da seguinte forma:
+1. Converter a String do formato UTF-8 usando a função UTF8Decode
+2. Executar normalmente qualquer operação desejada com a string a exemplo de concatenações, formatações, trim, copy etc
+3. Converter a string anterior novamente para o formato UTF-8 usando a função UTF8Encoding 
+
+Sendo assim para salvar um arquivo texto em formato UTF-8 podemos usar qualquer uma das 2 opções a seguir:
+
+//********** OPÇÃO 01 ********** 
+procedure TForm1.Button1Click(Sender: TObject); 
+begin
+ s:=Memo1.Lines.Text;
+ s:=UTF8Encode(s);
+ {//adding BOM}
+ s:=char($EF)+char($BB)+char($BF)+s;
+ Memo1.Lines.Text:=s;
+ Memo1.Lines.SaveToFile('c:\teste');
+end;
+
+//********** OPÇÃO 02 ********** 
+procedure TForm1.Button1Click(Sender: TObject); 
+var 
+ F: System.TextFile; 
+ Texto: String; 
+begin 
+ SaveDialog.FileName := 'NFPaulista.TXT'; 
+ // Escolher o Nome do Arquivo e Diretorio 
+ if SaveDialog.Execute then 
+  try 
+   if FileExists(SaveDialog.FileName) then 
+    if MessageDlg(Format('Regravar o Arquivo %s', [SaveDialog.FileName]), mtConfirmation, mbYesNoCancel, 0) <> idYes then 
+     Exit 
+    else 
+     DeleteFile( SaveDialog.FileName ); 
+   AssignFile(f, SaveDialog.FileName); 
+   Rewrite(f); // Criar Arquivo 
+   Write(f, #239+#187+#191); 
+   //----------------------------------------- 
+   Texto := '10|1,00|24956658000130|01/01/2008|01/01/2008|'; 
+   Writeln(F, UTF8Encode( Texto )); Texto := ''; 
+   //----------------------------------------- 
+  finally 
+   CloseFile(f); 
+  end; 
+end;

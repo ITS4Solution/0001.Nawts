@@ -1,0 +1,2 @@
+#FR3 clipboard#
+<TfrxShapeView Name="Shape1" Left="0" Top="0" Width="702.99258" Height="79.37013" ShowHint="False" Frame.Color="12632256" Shape="skRoundRectangle"/>

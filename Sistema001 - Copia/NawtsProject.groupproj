@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{4637BFF3-5697-4E6D-8FA0-C199A7E5992C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Client\Nawts_Client_Test.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Server\Nawts_Server_Local.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Nawts_Client_Test">
+        <MSBuild Projects="Client\Nawts_Client_Test.dproj"/>
+    </Target>
+    <Target Name="Nawts_Client_Test:Clean">
+        <MSBuild Projects="Client\Nawts_Client_Test.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Nawts_Client_Test:Make">
+        <MSBuild Projects="Client\Nawts_Client_Test.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Nawts_Server_Local">
+        <MSBuild Projects="Server\Nawts_Server_Local.dproj"/>
+    </Target>
+    <Target Name="Nawts_Server_Local:Clean">
+        <MSBuild Projects="Server\Nawts_Server_Local.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Nawts_Server_Local:Make">
+        <MSBuild Projects="Server\Nawts_Server_Local.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Nawts_Client_Test;Nawts_Server_Local"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Nawts_Client_Test:Clean;Nawts_Server_Local:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Nawts_Client_Test:Make;Nawts_Server_Local:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
