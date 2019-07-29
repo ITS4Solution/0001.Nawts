@@ -15,4 +15,4 @@ ALTER TABLE "tblfornecedor"
     ADD "endereco" VARCHAR(50),
     ADD "fax" VARCHAR(15),
     ADD "cep" VARCHAR(10),
-    ADD "email" VARCHAR(30)
+    ADD "email" VARCHAR(30),,,
