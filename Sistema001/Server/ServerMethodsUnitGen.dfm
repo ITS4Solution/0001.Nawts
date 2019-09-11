@@ -20,8 +20,8 @@ object ServerMethodsGen: TServerMethodsGen
       'Order by "descricao"'
       '')
     SQLConnection = DMCnn.dbxCnn
-    Left = 18
-    Top = 8
+    Left = 770
+    Top = 560
     object sqlTblInsumosid: TIntegerField
       FieldName = 'id'
     end
@@ -66,8 +66,8 @@ object ServerMethodsGen: TServerMethodsGen
   object dspTblInsumos: TDataSetProvider
     DataSet = sqlTblInsumos
     Options = [poIncFieldProps, poAutoRefresh, poPropogateChanges, poAllowCommandText, poUseQuoteChar]
-    Left = 82
-    Top = 8
+    Left = 834
+    Top = 560
   end
   object sqlNfeEntrada: TSQLQuery
     MaxBlobSize = 1
@@ -326,8 +326,8 @@ object ServerMethodsGen: TServerMethodsGen
     SQL.Strings = (
       'Select * from "tblprodutos"')
     SQLConnection = DMCnn.dbxCnn
-    Left = 34
-    Top = 224
+    Left = 834
+    Top = 616
     object sqlProdutosid: TIntegerField
       FieldName = 'id'
     end
@@ -380,12 +380,16 @@ object ServerMethodsGen: TServerMethodsGen
       FieldName = 'tipo_item'
       Size = 2
     end
+    object sqlProdutosativo: TStringField
+      FieldName = 'ativo'
+      Size = 3
+    end
   end
   object dspProdutos: TDataSetProvider
     DataSet = sqlProdutos
     Options = [poIncFieldProps, poAutoRefresh, poPropogateChanges, poAllowCommandText, poUseQuoteChar]
-    Left = 82
-    Top = 224
+    Left = 906
+    Top = 616
   end
   object sqlGrupoProdutos: TSQLQuery
     MaxBlobSize = 1
@@ -973,8 +977,8 @@ object ServerMethodsGen: TServerMethodsGen
       'and "tblprodutosxinsumos"."insumosid" = "tblinsumos"."id"'
       'and "tblprodutos"."id" = :ipdprod')
     SQLConnection = DMCnn.dbxCnn
-    Left = 128
-    Top = 392
+    Left = 784
+    Top = 496
     object sqlTblInsumoEnvaseid: TIntegerField
       FieldName = 'id'
       Required = True
@@ -993,8 +997,8 @@ object ServerMethodsGen: TServerMethodsGen
   end
   object dspTblInsumoEnvase: TDataSetProvider
     DataSet = sqlTblInsumoEnvase
-    Left = 176
-    Top = 392
+    Left = 832
+    Top = 496
   end
   object dspEstoqueQuimico: TDataSetProvider
     DataSet = sqlEstoqueQuimico
@@ -1241,8 +1245,8 @@ object ServerMethodsGen: TServerMethodsGen
       'select * from "tblordemenvase"'
       'order by "data"  desc ')
     SQLConnection = DMCnn.dbxCnn
-    Left = 224
-    Top = 224
+    Left = 792
+    Top = 360
     object sqlOrdemEnvaseBtid: TIntegerField
       FieldName = 'id'
     end
@@ -1287,8 +1291,8 @@ object ServerMethodsGen: TServerMethodsGen
   end
   object dspOrdemEnvaseBt: TDataSetProvider
     DataSet = sqlOrdemEnvaseBt
-    Left = 272
-    Top = 224
+    Left = 872
+    Top = 360
   end
   object sqlQtdProduto: TSQLQuery
     MaxBlobSize = -1
@@ -4477,8 +4481,8 @@ object ServerMethodsGen: TServerMethodsGen
         'where "status" = '#39'Aberto'#39' or "status" = '#39'Produzindo'#39' order by "d' +
         'ata"  desc , "hora" desc')
     SQLConnection = DMCnn.dbxCnn
-    Left = 888
-    Top = 336
+    Left = 840
+    Top = 296
     object qrySaidaProducaoid: TIntegerField
       FieldName = 'id'
       Required = True
@@ -4541,8 +4545,8 @@ object ServerMethodsGen: TServerMethodsGen
   end
   object dspSaidaProducao: TDataSetProvider
     DataSet = qrySaidaProducao
-    Left = 936
-    Top = 336
+    Left = 888
+    Top = 296
   end
   object SaidaProducaoBT: TSQLQuery
     MaxBlobSize = -1
@@ -5218,8 +5222,8 @@ object ServerMethodsGen: TServerMethodsGen
         'envasedetalhe"."idordemproducao"'
       'where "tblcontroleop"."id" = :id_controle')
     SQLConnection = DMCnn.dbxCnn
-    Left = 880
-    Top = 456
+    Left = 832
+    Top = 416
     object qrySaidaDetalheBt2id: TIntegerField
       FieldName = 'id'
       Required = True
@@ -5253,8 +5257,8 @@ object ServerMethodsGen: TServerMethodsGen
   end
   object dspSaidaDetalheBt2: TDataSetProvider
     DataSet = qrySaidaDetalheBt2
-    Left = 928
-    Top = 456
+    Left = 880
+    Top = 416
   end
   object qryAux2: TSQLQuery
     MaxBlobSize = -1
@@ -5295,5 +5299,65 @@ object ServerMethodsGen: TServerMethodsGen
     object sqlForItensConsQTDE: TFloatField
       FieldName = 'QTDE'
     end
+  end
+  object qryEstoqueLote: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'idins'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      'select "lote", "dataval", sum("quantd") as qtd'
+      'from "tblestoqueinsumos"'
+      
+        'where "lote" is not null and "tipo" = '#39'Mat. Prima'#39' and "idinsumo' +
+        '" = :idins'
+      
+        'group by "lote","dataval" having sum("quantd") > 0 order by "dat' +
+        'aval"')
+    SQLConnection = DMCnn.dbxCnn
+    Left = 776
+    Top = 232
+  end
+  object dspEstoqueLote: TDataSetProvider
+    DataSet = qryEstoqueLote
+    Left = 872
+    Top = 232
+  end
+  object qryProdutoOEnvase: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      
+        'select "tblprodutos"."id","tblprodutos"."descricao","tblprodutos' +
+        '"."tipo_item"'
+      'from "tblprodutos","tblprodutosxinsumos","tblinsumos"'
+      'where "tblprodutos"."id" = "tblprodutosxinsumos"."produtoid"'
+      'and "tblprodutosxinsumos"."insumosid" = "tblinsumos"."id"'
+      'and "tblprodutos"."procedencia" = '#39'Fabricado'#39
+      
+        'and ("tblprodutos"."ativo" <> '#39'Sim'#39' or "tblprodutos"."ativo" is ' +
+        'null)'
+      
+        'Group by "tblprodutos"."id","tblprodutos"."descricao","tblprodut' +
+        'os"."tipo_item"')
+    SQLConnection = DMCnn.dbxCnn
+    Left = 800
+    Top = 672
+    object qryProdutoOEnvaseid: TIntegerField
+      FieldName = 'id'
+      Required = True
+    end
+    object qryProdutoOEnvasedescricao: TStringField
+      FieldName = 'descricao'
+      Size = 50
+    end
+  end
+  object dspProdutoOEnvase: TDataSetProvider
+    DataSet = qryProdutoOEnvase
+    Left = 920
+    Top = 672
   end
 end

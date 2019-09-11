@@ -45,7 +45,7 @@ object DMCnn: TDMCnn
       'ServerCharSet='
       'Trim Char=False'
       'Database=localhost:dbnawts')
-    Left = 24
+    Left = 32
     Top = 24
   end
 end

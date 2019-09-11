@@ -4,8 +4,8 @@ inherited F_ProdutosButtons: TF_ProdutosButtons
   ClientWidth = 546
   KeyPreview = True
   OnKeyPress = FormKeyPress
-  ExplicitWidth = 562
-  ExplicitHeight = 420
+  ExplicitWidth = 564
+  ExplicitHeight = 428
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxBevel1: TdxBevel
@@ -268,6 +268,16 @@ inherited F_ProdutosButtons: TF_ProdutosButtons
       '10 - Outros insumos;'
       '99 - Outras.')
   end
+  object cxDBCheckBox1: TcxDBCheckBox [28]
+    Left = 385
+    Top = 221
+    Caption = 'Desativado'
+    DataBinding.DataField = 'ativo'
+    DataBinding.DataSource = oDS
+    Properties.ValueChecked = 'Sim'
+    Properties.ValueUnchecked = 'N'#227'o'
+    TabOrder = 14
+  end
   inherited ActionList: TActionList
     Left = 488
   end
@@ -325,6 +335,10 @@ inherited F_ProdutosButtons: TF_ProdutosButtons
     object oCdstipo_item: TStringField
       FieldName = 'tipo_item'
       Size = 2
+    end
+    object oCdsativo: TStringField
+      FieldName = 'ativo'
+      Size = 3
     end
   end
   object oCdsGrupoProdutos: TClientDataSet

@@ -2,8 +2,8 @@ inherited F_EspEmb: TF_EspEmb
   Caption = 'Especifica'#231#227'o de Embalagem'
   ClientHeight = 635
   ClientWidth = 754
-  ExplicitWidth = 770
-  ExplicitHeight = 674
+  ExplicitWidth = 772
+  ExplicitHeight = 682
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxBevel1: TdxBevel
@@ -1510,6 +1510,10 @@ inherited F_EspEmb: TF_EspEmb
     object TabSheet4: TTabSheet
       Caption = 'Cartucho'
       ImageIndex = 3
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GroupBox19: TGroupBox
         Left = 0
         Top = 0

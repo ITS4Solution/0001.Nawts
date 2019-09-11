@@ -20,12 +20,14 @@ object DM: TDM
         'Token=91d62ebb5b0d1b1b'
       'Filters={}'
       'HostName=localhost')
+    Connected = True
     Left = 15
     Top = 18
     UniqueId = '{4FBE5A63-8B8C-4527-A914-F7E743F8E653}'
   end
   object ShCoGen: TDSProviderConnection
     ServerClassName = 'TServerMethodsGen'
+    Connected = True
     SQLConnection = sqlCnn
     Left = 88
     Top = 18
@@ -3087,7 +3089,6 @@ object DM: TDM
     Top = 416
   end
   object cdsExp: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspEstoqueExp'

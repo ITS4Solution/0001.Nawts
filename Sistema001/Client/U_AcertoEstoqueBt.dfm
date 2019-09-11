@@ -1,17 +1,17 @@
 inherited F_AcertoEstoqueBt: TF_AcertoEstoqueBt
   Caption = 'Acerto de Estoque'
-  ClientHeight = 381
-  ClientWidth = 721
+  ClientHeight = 472
+  ClientWidth = 727
   KeyPreview = True
   OnKeyPress = FormKeyPress
-  ExplicitWidth = 737
-  ExplicitHeight = 420
+  ExplicitWidth = 745
+  ExplicitHeight = 519
   PixelsPerInch = 96
   TextHeight = 13
   inherited dxBevel1: TdxBevel
     Top = 0
-    Width = 721
-    Height = 307
+    Width = 727
+    Height = 398
     Align = alClient
     ExplicitLeft = 1
     ExplicitTop = 0
@@ -73,14 +73,14 @@ inherited F_AcertoEstoqueBt: TF_AcertoEstoqueBt
     FocusControl = DBEdit1
   end
   inherited StatusBar1: TStatusBar
-    Top = 362
-    Width = 721
-    ExplicitTop = 362
-    ExplicitWidth = 721
+    Top = 453
+    Width = 727
+    ExplicitTop = 453
+    ExplicitWidth = 727
   end
   inherited Panel1: TPanel
-    Top = 307
-    Width = 721
+    Top = 398
+    Width = 727
     TabOrder = 8
     ExplicitTop = 307
     ExplicitWidth = 721
@@ -91,7 +91,7 @@ inherited F_AcertoEstoqueBt: TF_AcertoEstoqueBt
       ExplicitTop = 13
     end
     inherited btnsair: TAdvGlassButton
-      Left = 609
+      Left = 615
       Top = 13
       ExplicitLeft = 609
       ExplicitTop = 13
@@ -165,7 +165,73 @@ inherited F_AcertoEstoqueBt: TF_AcertoEstoqueBt
     TabOrder = 5
     OnExit = DBEdit2Exit
   end
-  object recSeq: TPanel [18]
+  object edtQtdEstoque: TEdit [18]
+    Left = 459
+    Top = 22
+    Width = 121
+    Height = 21
+    TabStop = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clHighlight
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+  end
+  object Panel2: TPanel [19]
+    Left = 8
+    Top = 129
+    Width = 705
+    Height = 252
+    TabOrder = 10
+    object Panel3: TPanel
+      Left = 1
+      Top = 1
+      Width = 703
+      Height = 41
+      Align = alTop
+      Caption = 'Quantidade em Estoque'
+      TabOrder = 0
+      ExplicitLeft = 88
+      ExplicitTop = 24
+      ExplicitWidth = 185
+    end
+    object cxGrid1: TcxGrid
+      Left = 1
+      Top = 42
+      Width = 703
+      Height = 209
+      Align = alClient
+      TabOrder = 1
+      ExplicitLeft = 127
+      ExplicitTop = 65
+      ExplicitWidth = 250
+      ExplicitHeight = 200
+      object cxGrid1DBTableView1: TcxGridDBTableView
+        Navigator.Buttons.CustomButtons = <>
+        DataController.DataSource = dsEstoqueLote
+        DataController.Summary.DefaultGroupSummaryItems = <>
+        DataController.Summary.FooterSummaryItems = <>
+        DataController.Summary.SummaryGroups = <>
+        OptionsView.GroupByBox = False
+        object cxGrid1DBTableView1lote: TcxGridDBColumn
+          DataBinding.FieldName = 'lote'
+        end
+        object cxGrid1DBTableView1dataval: TcxGridDBColumn
+          DataBinding.FieldName = 'dataval'
+        end
+        object cxGrid1DBTableView1QTD: TcxGridDBColumn
+          DataBinding.FieldName = 'QTD'
+          MinWidth = 30
+        end
+      end
+      object cxGrid1Level1: TcxGridLevel
+        GridView = cxGrid1DBTableView1
+      end
+    end
+  end
+  object recSeq: TPanel [20]
     Left = 192
     Top = 153
     Width = 344
@@ -286,20 +352,6 @@ inherited F_AcertoEstoqueBt: TF_AcertoEstoqueBt
       OnClick = AdvGlassButton1Click
     end
   end
-  object edtQtdEstoque: TEdit [19]
-    Left = 459
-    Top = 22
-    Width = 121
-    Height = 21
-    TabStop = False
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clHighlight
-    Font.Height = -11
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 2
-  end
   inherited ActionList: TActionList
     Left = 136
     Top = 8
@@ -387,5 +439,37 @@ inherited F_AcertoEstoqueBt: TF_AcertoEstoqueBt
     DataSet = cdsInsumo
     Left = 40
     Top = 64
+  end
+  object cdsEstoqueLote: TClientDataSet
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftString
+        Name = 'idins'
+        ParamType = ptInput
+        Value = '0'
+      end>
+    ProviderName = 'dspEstoqueLote'
+    RemoteServer = DM.ShCoGen
+    Left = 481
+    Top = 153
+    object cdsEstoqueLotelote: TStringField
+      DisplayLabel = 'Lote'
+      FieldName = 'lote'
+      Size = 40
+    end
+    object cdsEstoqueLotedataval: TDateField
+      DisplayLabel = 'Validade'
+      FieldName = 'dataval'
+    end
+    object cdsEstoqueLoteQTD: TFloatField
+      DisplayLabel = 'Quantidade'
+      FieldName = 'QTD'
+    end
+  end
+  object dsEstoqueLote: TDataSource
+    DataSet = cdsEstoqueLote
+    Left = 577
+    Top = 153
   end
 end

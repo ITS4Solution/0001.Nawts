@@ -2,18 +2,20 @@ inherited F_EstoqueInsumosGrid: TF_EstoqueInsumosGrid
   Caption = 'Movimenta'#231#227'o do Estoque'
   ClientHeight = 393
   ClientWidth = 731
-  ExplicitWidth = 747
-  ExplicitHeight = 432
+  ExplicitWidth = 749
+  ExplicitHeight = 440
   PixelsPerInch = 96
   TextHeight = 13
   inherited StatusBar1: TStatusBar
     Top = 374
     Width = 731
+    ExplicitTop = 374
     ExplicitWidth = 731
   end
   inherited Panel1: TPanel
     Top = 319
     Width = 731
+    ExplicitTop = 319
     ExplicitWidth = 731
     inherited btnsair: TAdvGlassButton
       Left = 623
@@ -26,7 +28,7 @@ inherited F_EstoqueInsumosGrid: TF_EstoqueInsumosGrid
     end
     object AdvGlassButton1: TAdvGlassButton
       Left = 14
-      Top = 14
+      Top = 17
       Width = 100
       Height = 32
       BackColor = 6052956
@@ -51,6 +53,7 @@ inherited F_EstoqueInsumosGrid: TF_EstoqueInsumosGrid
     Width = 731
     Height = 319
     ExplicitWidth = 731
+    ExplicitHeight = 319
     inherited cxGrid1DBTableView1: TcxGridDBTableView
       DataController.DataSource = oDS
       object cxGrid1DBTableView1descricao: TcxGridDBColumn

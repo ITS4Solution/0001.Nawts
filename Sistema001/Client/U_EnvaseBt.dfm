@@ -141,10 +141,10 @@ inherited F_EnvaseBt: TF_EnvaseBt
     ExplicitWidth = 726
     ExplicitHeight = 54
     inherited btnSalvar: TAdvGlassButton
-      Left = 317
-      Top = 16
-      ExplicitLeft = 317
-      ExplicitTop = 16
+      Left = 320
+      Top = 13
+      ExplicitLeft = 320
+      ExplicitTop = 13
     end
     inherited btnsair: TAdvGlassButton
       Left = 618
@@ -186,7 +186,7 @@ inherited F_EnvaseBt: TF_EnvaseBt
   object cxDBLookupComboBox1: TcxDBLookupComboBox [19]
     Tag = 3
     Left = 189
-    Top = 54
+    Top = 51
     DataBinding.DataField = 'idprodutos'
     DataBinding.DataSource = oDS
     Properties.GridMode = True
@@ -750,7 +750,7 @@ inherited F_EnvaseBt: TF_EnvaseBt
   object CdsProdutos: TClientDataSet
     Aggregates = <>
     Params = <>
-    ProviderName = 'dspProdutos'
+    ProviderName = 'dspProdutoOEnvase'
     RemoteServer = DM.ShCoGen
     Left = 8
     Top = 56

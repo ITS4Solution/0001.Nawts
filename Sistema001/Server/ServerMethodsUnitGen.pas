@@ -1142,6 +1142,13 @@ type
     sqlForItensConscodproduto: TIntegerField;
     sqlForItensConsdescricao: TStringField;
     sqlForItensConsQTDE: TFloatField;
+    qryEstoqueLote: TSQLQuery;
+    dspEstoqueLote: TDataSetProvider;
+    qryProdutoOEnvase: TSQLQuery;
+    dspProdutoOEnvase: TDataSetProvider;
+    qryProdutoOEnvaseid: TIntegerField;
+    qryProdutoOEnvasedescricao: TStringField;
+    sqlProdutosativo: TStringField;
     procedure DSServerModuleCreate(Sender: TObject);
 //  type
 //    TStringArray = array of string;

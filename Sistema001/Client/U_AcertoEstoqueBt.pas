@@ -24,7 +24,8 @@ uses
   dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters,
   dxSkinValentine, dxSkinVisualStudio2013Blue, dxSkinVisualStudio2013Dark,
   dxSkinVisualStudio2013Light, dxSkinVS2010, dxSkinWhiteprint,
-  dxSkinXmas2008Blue;
+  dxSkinXmas2008Blue, cxStyles, dxSkinscxPCPainter, cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator,
+  cxDBData, cxGridLevel, cxClasses, cxGridCustomView, cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxGrid;
 
 type
   TF_AcertoEstoqueBt = class(TF_AbstratoButtons)
@@ -66,6 +67,19 @@ type
     edtQtdEstoque: TEdit;
     Label8: TLabel;
     dtfldCdsdataval: TDateField;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1Level1: TcxGridLevel;
+    cxGrid1: TcxGrid;
+    cdsEstoqueLote: TClientDataSet;
+    dsEstoqueLote: TDataSource;
+    cdsEstoqueLotelote: TStringField;
+    cdsEstoqueLotedataval: TDateField;
+    cdsEstoqueLoteQTD: TFloatField;
+    cxGrid1DBTableView1lote: TcxGridDBColumn;
+    cxGrid1DBTableView1dataval: TcxGridDBColumn;
+    cxGrid1DBTableView1QTD: TcxGridDBColumn;
     procedure ActSalvarExecute(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure AdvGlassButton3Click(Sender: TObject);
@@ -189,6 +203,9 @@ begin
  ///era aqui antes
   dm.opencnn;
   edtQtdEstoque.Text := FormatFloat('#,##0.000', strtofloat(dm.SMGen.EstInsumo(oCdsidinsumo.AsInteger)));
+  cdsEstoqueLote.Close;
+  cdsEstoqueLote.Params[0].Value := oCdsidinsumo.AsInteger;
+  cdsEstoqueLote.Open;
   dm.closecnn;
 end;
 
